@@ -1,5 +1,5 @@
 ---
-date: <% moment(tp.file.title, "YYYY-[W]WW").startOf('month').format("YYYY-MM-DD") %>
+date: <% moment(tp.file.title, "YYYY-MM").startOf('month').format("YYYY-MM-DD") %>
 tags:
   - monthly
   - Routine
@@ -19,8 +19,8 @@ related:
 - [ ] 
 ## Weekly Tracker
 
-| Week |
-| :--- |
+| Weeks this Month |
+| :--------------- |
 <%*
 // Get the current month and year from the file title
 const currentMonth = moment(tp.file.title, "YYYY-MM");
@@ -68,7 +68,6 @@ for (const link of weekLinks) {
     tR += `| ${link} |\n`; //  <--  Only the link and the separators
 }
 %>
-
 ## Notes 
 - 
 ## Monthly Review
