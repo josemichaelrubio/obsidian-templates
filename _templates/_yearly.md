@@ -1,4 +1,5 @@
 ---
+date: <% moment(tp.file.title, "YYYY").startOf('year').format("YYYY-MM-DD") %>
 tags:
   - yearly
   - Routine
@@ -10,35 +11,45 @@ related:
 
 ## Reference
 
+### Current 5-Year Plan
+
 ### Last Year
 [[06-ROUTINES/Yearly/<% moment(tp.file.title, "YYYY").subtract(1, 'years').format("YYYY") %>]]
 ###  Next Year
 [[06-ROUTINES/Yearly/<% moment(tp.file.title, "YYYY").add(1, 'years').format("YYYY") %>]]
 
-## Yearly Goals and Projects
+## Yearly Goals & Projects
 
 - [ ] 
 ## Quarterly Tracker
+| Quarter                                   |
+| :---------------------------------------- |
+<%*
+const year = moment(tp.file.title, "YYYY").year();
 
-| Quarter                                                                                                | Note                                                                                                                                          |
-| :----------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------- |
-| [[06_ROUTINES/Quarterly/Invalid date]]    | Overview of the quarter, linking to monthly notes within. Consider adding a brief summary after the quarter is completed.                    |
-| [[06_ROUTINES/Quarterly/Invalid date]] | Overview of the quarter, linking to monthly notes within. Consider adding a brief summary after the quarter is completed.                    |
-| [[06_ROUTINES/Quarterly/Invalid date]] | Overview of the quarter, linking to monthly notes within. Consider adding a brief summary after the quarter is completed.                    |
-| [[06_ROUTINES/Quarterly/Invalid date]] | Overview of the quarter, linking to monthly notes within. Consider adding a brief summary after the quarter is completed. |
+function generateQuarterLink(quarter) {
+    const startDate = moment().year(year).quarter(quarter).startOf('quarter');
+    return `[[06_ROUTINES/Quarterly/${startDate.format("YYYY-[Q]Q")}]]`;
+}
 
+let tableRows = "";
+for (let q = 1; q <= 4; q++) {
+    tableRows += `| ${generateQuarterLink(q)} |\n`;
+}
+
+tR += tableRows;
+%>
 ## Notes
+- 
+## Yearly Review 
 
-
-## Review 
-### Highlights
-
-
-### Challenges Faced
-
-
-### Lessons Learned
-
-
+### Mind Dump
+- 
+### Major Highlights
+- 
+### Major Challenges Faced
+- 
+### Major Lessons Learned
+- 
 ### Areas for Growth
-
+- 
