@@ -4,10 +4,7 @@ tags:
   - dreams
 related:
   - "[[00-Dreams]]"
+  - '[[06-ROUTINES/Daily/<% tp.date.now("YYYY-MM-DD") %>]]'
 ---
-<% tp.file.rename(tp.date.now("YYYY-MM-DD")) %>
+
 # Dream
-
-
-
-

@@ -18,5 +18,4 @@ related:
 ## Day planner
 - [ ] 
 ## Notes
-- 
-
+-
