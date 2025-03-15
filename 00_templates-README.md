@@ -46,3 +46,6 @@ Useable but requires more work:
 [[2025-03-15]]
 	- Plugin: May cut [Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes) = I don't know if I am using it since Templater takes care of the template destination (May the Plugin Tasks uses it)
 	- Daily planner uses it. It needed the Daily core plugin, Periodic Notes replaces the Daily core plugin
+	- Replaced - [Tasks.](https://github.com/obsidian-tasks-group/obsidian-tasks) with [Overview | Sync with Todoist Plugin](https://jamiebrynes7.github.io/obsidian-todoist-plugin/docs/overview) and https://github.com/Ledaryy/obsidian-todoist-completed-tasks for:
+		- [[_daily]]
+		- 
