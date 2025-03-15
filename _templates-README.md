@@ -1,0 +1,48 @@
+---
+created: 2025-01-19
+updated: 2025-03-15
+tags:
+  - git
+  - Obsidian
+  - README
+---
+# Obsidian Templates
+
+## Overview
+
+This git repo holds my Obsidian templates. It is a continuous work-in-progress.
+
+### Plugins
+It requires the following plugins: 
+- [Templater]([Introduction - Templater](https://silentvoid13.github.io/Templater/)) 
+- [Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes) or core Daily Notes
+- [Tasks.](https://github.com/obsidian-tasks-group/obsidian-tasks)
+- [Day Planner](https://github.com/ivan-lednev/obsidian-day-planner)
+- [Dataview](https://github.com/blacksmithgu/obsidian-dataview)
+- [Calendar](https://github.com/liamcain/obsidian-calendar-plugin)
+## Templates
+### Functional
+Fully Functional, however, will continue to improve:
+- [[_daily]]
+- [[_weekly]]
+- [[_monthly]]
+- [[_dreams]]
+- [[_quick]]
+
+### In-Progress
+Useable but requires more work:
+- [[_quarterly]]
+- [[_yearly]]
+
+### To Do
+- [[_5-year]]
+- [[_areas]]
+- [[_resources]]
+- [[_projects]]
+- [[_ideas]]
+
+## Notes
+
+[[2025-03-15]]
+	- Plugin: May cut [Periodic Notes](https://github.com/liamcain/obsidian-periodic-notes) = I don't know if I am using it since Templater takes care of the template destination (May the Plugin Tasks uses it)
+	- Daily planner uses it. It needed the Daily core plugin, Periodic Notes replaces the Daily core plugin
