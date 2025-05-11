@@ -1,6 +1,6 @@
 ---
 created: 2025-01-19
-updated: 2025-03-15
+updated: 2025-05-10
 tags:
   - git
   - Obsidian
@@ -48,4 +48,7 @@ Useable but requires more work:
 	- Daily planner uses it. It needed the Daily core plugin, Periodic Notes replaces the Daily core plugin
 	- Replaced - [Tasks.](https://github.com/obsidian-tasks-group/obsidian-tasks) with [Overview | Sync with Todoist Plugin](https://jamiebrynes7.github.io/obsidian-todoist-plugin/docs/overview) and https://github.com/Ledaryy/obsidian-todoist-completed-tasks for:
 		- [[_daily]]
-		- 
+
+[[2025-05-10]]
+- Removed todoist from [[_daily]]
+	- Cause I used the app more
