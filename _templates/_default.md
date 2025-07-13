@@ -1,8 +1,8 @@
 ---
 date: <% tp.date.now("YYYY-MM-DD") %>
-tags: quick
+tags:
 related:
-  - "[[00-Quick]]"
+  - 
 source:
 ---
-# Note
+# Notes
