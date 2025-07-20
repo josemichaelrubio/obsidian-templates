@@ -8,10 +8,49 @@ related:
   - "[[00-Monthly]]"
 goal-type: monthly
 goal-horizon: 1-month
-parent-goals: []
-child-goals: []
-primary-focus: ""
-key-projects: []
+parent-goals: <%*
+// Auto-link to quarterly note that contains this month
+const monthDate = moment(tp.file.title, "YYYY-MM");
+const quarterlyNote = monthDate.format("YYYY-[Q]Q");
+tR += `["[[06-ROUTINES/Quarterly/${quarterlyNote}]]"]`;
+%>
+child-goals: <%*
+// Auto-generate child-goals for weekly notes in this month
+const monthStart = moment(tp.file.title, "YYYY-MM").startOf('month');
+const monthEnd = moment(tp.file.title, "YYYY-MM").endOf('month');
+const weeklyGoals = [];
+
+// Find all weeks that overlap with this month
+let currentWeek = monthStart.clone().startOf('week');
+while (currentWeek.isSameOrBefore(monthEnd, 'week')) {
+    weeklyGoals.push(`"[[06-ROUTINES/Weekly/${currentWeek.format("YYYY-[W]WW")}]]"`);
+    currentWeek.add(1, 'week');
+}
+tR += `[${weeklyGoals.join(', ')}]`;
+%>
+primary-focus: 
+  - 
+key-projects: <%*
+// Auto-link to active projects starting with 00-
+const fs = require('fs');
+const path = require('path');
+const projectsPath = path.join(app.vault.adapter.basePath, '01-PROJECTS');
+const activeProjects = [];
+
+try {
+    const files = fs.readdirSync(projectsPath, { withFileTypes: true });
+    for (const file of files) {
+        if (file.isFile() && file.name.startsWith('00-') && file.name.endsWith('.md')) {
+            const projectName = file.name.replace('.md', '');
+            activeProjects.push(`"[[01-PROJECTS/${projectName}]]"`);
+        }
+    }
+} catch (error) {
+    // Fallback if directory reading fails
+}
+
+tR += activeProjects.length > 0 ? `[${activeProjects.join(', ')}]` : '[]';
+%>
 completion-status: ""
 ---
 # <% moment(tp.file.title, "YYYY-MM").format("MMMM YYYY") %> Monthly Plan

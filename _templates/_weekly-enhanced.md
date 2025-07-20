@@ -6,6 +6,24 @@ tags:
   - Todo
 related:
   - "[[00-Weekly]]"
+goal-type: weekly
+goal-horizon: 1-week
+parent-goals: <%*
+// Auto-link to monthly note that contains this week
+const weekDate = moment(tp.file.title, "YYYY-[W]WW");
+const monthlyNote = weekDate.format("YYYY-MM");
+tR += `["[[06-ROUTINES/Monthly/${monthlyNote}]]"]`;
+%>
+child-goals: <%*
+// Auto-generate child-goals for daily notes in this week
+const weekStart = moment(tp.file.title, "YYYY-[W]WW").startOf('week');
+const dailyGoals = [];
+for (let i = 0; i < 7; i++) {
+    const dayMoment = weekStart.clone().add(i, 'days');
+    dailyGoals.push(`"[[06-ROUTINES/Daily/${dayMoment.format("YYYY-MM-DD")}]]"`);
+}
+tR += `[${dailyGoals.join(', ')}]`;
+%>
 ---
 # Weekly Notes - Week <% moment(tp.file.title, "YYYY-[W]WW").format("WW, YYYY") %>
 

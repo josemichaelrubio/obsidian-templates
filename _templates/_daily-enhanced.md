@@ -8,7 +8,12 @@ related:
   - "[[00-Daily]]"
 goal-type: daily
 goal-horizon: 1-day
-parent-goals: []
+parent-goals: <%*
+// Auto-link to weekly note that contains this day
+const dailyDate = moment(tp.file.title, "YYYY-MM-DD");
+const weeklyNote = dailyDate.format("YYYY-[W]WW");
+tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
+%>
 ---
 # Daily Notes - <% moment(tp.file.title, "YYYY-MM-DD").format("dddd, MMMM D, YYYY") %>
 

@@ -11,7 +11,7 @@ related:
 
 ## Reference
 
-### Current 5-Year Plan
+### Current 5-Year
 
 ### Last Year
 [[06-ROUTINES/Yearly/<% moment(tp.file.title, "YYYY").subtract(1, 'years').format("YYYY") %>]]

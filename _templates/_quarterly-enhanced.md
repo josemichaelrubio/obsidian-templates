@@ -8,10 +8,48 @@ related:
   - "[[00-Quarterly]]"
 goal-type: quarterly
 goal-horizon: 3-months
-parent-goals: []
-child-goals: []
+parent-goals: <%*
+// Auto-link to yearly plan for this quarter
+const quarterForParent = moment(tp.file.title, "YYYY-[Q]Q");
+const parentYear = quarterForParent.year();
+tR += `["[[06-ROUTINES/Yearly/${parentYear}]]"]`;
+%>
+child-goals: <%*
+// Auto-generate child-goals for monthly notes in this quarter
+const quarterForChildren = moment(tp.file.title, "YYYY-[Q]Q");
+const childYear = quarterForChildren.year();
+const childQuarterNumber = quarterForChildren.quarter();
+const startMonth = (childQuarterNumber - 1) * 3; // 0, 3, 6, 9 (0-indexed)
+const monthlyGoals = [];
+for (let i = 0; i < 3; i++) {
+    const monthIndex = startMonth + i;
+    const monthMoment = moment().year(childYear).month(monthIndex);
+    monthlyGoals.push(`"[[06-ROUTINES/Monthly/${monthMoment.format("YYYY-MM")}]]"`);
+}
+tR += `[${monthlyGoals.join(', ')}]`;
+%>
 primary-goals: ""
-key-projects: []
+key-projects: <%*
+// Auto-link to active projects starting with 00-
+const fs = require('fs');
+const path = require('path');
+const projectsPath = path.join(app.vault.adapter.basePath, '01-PROJECTS');
+const activeProjects = [];
+
+try {
+    const files = fs.readdirSync(projectsPath, { withFileTypes: true });
+    for (const file of files) {
+        if (file.isFile() && file.name.startsWith('00-') && file.name.endsWith('.md')) {
+            const projectName = file.name.replace('.md', '');
+            activeProjects.push(`"[[01-PROJECTS/${projectName}]]"`);
+        }
+    }
+} catch (error) {
+    // Fallback if directory reading fails
+}
+
+tR += activeProjects.length > 0 ? `[${activeProjects.join(', ')}]` : '[]';
+%>
 completion-status: ""
 ---
 # <% moment(tp.file.title, "YYYY-[Q]Q").format("[Q]Q YYYY") %> Quarterly Plan
@@ -28,7 +66,7 @@ WHERE contains(child-goals, this.file.link)
 ### Parent 5-Year Goals
 ```dataview
 LIST
-FROM "06-ROUTINES/5-Year Plan"
+FROM "06-ROUTINES/5 Year"
 WHERE contains(child-goals, this.file.link)
 ```
 
@@ -103,8 +141,8 @@ SORT date ASC
 <%*
 const quarter = moment(tp.file.title, "YYYY-[Q]Q");
 const year = quarter.year();
-const quarterNumber = quarter.quarter();
-const startMonth = (quarterNumber - 1) * 3; // 0, 3, 6, 9 (0-indexed)
+const tableQuarterNumber = quarter.quarter();
+const tableStartMonth = (tableQuarterNumber - 1) * 3; // 0, 3, 6, 9 (0-indexed)
 
 function generateMonthLink(year, month) {
   const monthMoment = moment().year(year).month(month);
@@ -113,7 +151,7 @@ function generateMonthLink(year, month) {
 
 let tableRows = "";
 for(let i = 0; i < 3; i++){
-  const monthIndex = startMonth + i;
+  const monthIndex = tableStartMonth + i;
   tableRows += `| ${generateMonthLink(year, monthIndex)} |  |  |  |\n`
 }
 

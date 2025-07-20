@@ -251,10 +251,10 @@ FROM "06-ROUTINES/Life"
 WHERE contains(progress-years, "<% moment(tp.file.title).format("YYYY") %>")
 ```
 
-### 5-Year Plan Milestone Status
+### 5-Year Milestone Status
 ```dataview
 LIST
-FROM "06-ROUTINES/5-Year Plan"
+FROM "06-ROUTINES/5 Year"
 WHERE contains(milestone-years, "<% moment(tp.file.title).format("YYYY") %>")
 ```
 

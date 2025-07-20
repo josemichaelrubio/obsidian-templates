@@ -9,9 +9,24 @@ related:
 goal-type: strategic
 goal-horizon: 5-year
 parent-goals: []
-child-goals: []
+child-goals: <%*
+// Auto-generate child-goals for yearly notes in this 5-year range
+const title = tp.file.title;
+const match = title.match(/(\d{4})-(\d{4})/);
+if (match) {
+    const startYear = parseInt(match[1]);
+    const endYear = parseInt(match[2]);
+    const yearlyGoals = [];
+    for (let year = startYear; year <= endYear; year++) {
+        yearlyGoals.push(`"[[06-ROUTINES/Yearly/${year}]]"`);
+    }
+    tR += `[${yearlyGoals.join(', ')}]`;
+} else {
+    tR += '[]';
+}
+%>
 ---
-# 5-Year Plan: <% tp.file.title %>
+# 5-Year: <% tp.file.title %>
 
 ## Parent Life Goals
 ```dataview
@@ -78,7 +93,7 @@ WHERE contains(strategic-goals, this.file.link) AND !contains(file.folder, "ARCH
 
 ## Progress Review
 ### Current Status
-*Where are you in year __ of this 5-year plan?*
+*Where are you in year __ of this 5-year?*
 
 
 ### Major Milestones Achieved

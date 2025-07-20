@@ -8,10 +8,44 @@ related:
   - "[[00-Yearly]]"
 goal-type: annual
 goal-horizon: 1-year
-parent-goals: []
-child-goals: []
+parent-goals: <%*
+// Auto-link to 5-year that contains this year
+const currentYear = moment(tp.file.title, "YYYY").year();
+const fiveYearStart = Math.floor((currentYear - 2025) / 5) * 5 + 2025;
+const fiveYearEnd = fiveYearStart + 4;
+tR += `["[[06-ROUTINES/5-Year/${fiveYearStart}-${fiveYearEnd}]]"]`;
+%>
+child-goals: <%*
+// Auto-generate child-goals for quarterly notes in this year
+const yearForQuarters = moment(tp.file.title, "YYYY").year();
+const quarterlyGoals = [];
+for (let q = 1; q <= 4; q++) {
+    quarterlyGoals.push(`"[[06-ROUTINES/Quarterly/${yearForQuarters}-Q${q}]]"`);
+}
+tR += `[${quarterlyGoals.join(', ')}]`;
+%>
 primary-focus: ""
-key-projects: []
+key-projects: <%*
+// Auto-link to active projects starting with 00-
+const fs = require('fs');
+const path = require('path');
+const projectsPath = path.join(app.vault.adapter.basePath, '01-PROJECTS');
+const activeProjects = [];
+
+try {
+    const files = fs.readdirSync(projectsPath, { withFileTypes: true });
+    for (const file of files) {
+        if (file.isFile() && file.name.startsWith('00-') && file.name.endsWith('.md')) {
+            const projectName = file.name.replace('.md', '');
+            activeProjects.push(`"[[01-PROJECTS/${projectName}]]"`);
+        }
+    }
+} catch (error) {
+    // Fallback if directory reading fails
+}
+
+tR += activeProjects.length > 0 ? `[${activeProjects.join(', ')}]` : '[]';
+%>
 goal-progress: ""
 ---
 # <% tp.file.title %> Annual Plan
@@ -21,7 +55,7 @@ goal-progress: ""
 ### Parent 5-Year Goals
 ```dataview
 LIST
-FROM "06-ROUTINES/5-Year Plan"
+FROM "06-ROUTINES/5-Year"
 WHERE contains(child-goals, this.file.link)
 ```
 
@@ -29,12 +63,17 @@ WHERE contains(child-goals, this.file.link)
 ```dataview
 LIST
 FROM "06-ROUTINES/Life"
-WHERE contains(child-goals, this.file.link)
+WHERE contains(child-goals, child-goals)
 ```
-
+-- Update uptop
 ## Reference Navigation
-### Current 5-Year Plan
-[[06-ROUTINES/5-Year Plan/]]
+### Current 5-Year
+<%*
+const currentYearNav = moment(tp.file.title, "YYYY").year();
+const fiveYearStartNav = Math.floor((currentYearNav - 2025) / 5) * 5 + 2025;
+const fiveYearEndNav = fiveYearStartNav + 4;
+tR += `[[06-ROUTINES/5-Year/${fiveYearStartNav}-${fiveYearEndNav}]]`;
+%>
 
 ### Last Year
 [[06-ROUTINES/Yearly/<% moment(tp.file.title, "YYYY").subtract(1, 'years').format("YYYY") %>]]

@@ -27,7 +27,7 @@ goal-horizon: lifetime
 ## Supporting 5-Year Goals
 ```dataview
 LIST
-FROM "06-ROUTINES/5-Year Plan"
+FROM "06-ROUTINES/5 Year"
 WHERE contains(parent-goals, this.file.link)
 ```
 
