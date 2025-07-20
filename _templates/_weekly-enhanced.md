@@ -36,7 +36,7 @@ SORT file.mtime DESC
 ```dataview
 TASK
 FROM "01-PROJECTS" OR "02-AREAS"
-WHERE !completed AND !regexmatch(file.folder, "(?i)archive")
+WHERE !completed AND !contains(file.folder, "ARCHIVE")
 WHERE due >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND due <= date(<% moment(tp.file.title, "YYYY-[W]WW").endOf('week').format("YYYY-MM-DD") %>) OR !due
 SORT priority DESC, due ASC
 LIMIT 10
@@ -65,7 +65,7 @@ TABLE
         round((length(file.tasks.completed) / length(file.tasks)) * 100, 0) + "%", 
         "No goals") AS "Completion %"
 FROM "06-ROUTINES/Weekly"
-WHERE file.name != "00-Weekly" AND !regexmatch(file.folder, "(?i)archive")
+WHERE file.name != "00-Weekly" AND !contains(file.folder, "ARCHIVE")
 SORT date DESC
 LIMIT 6
 ```

@@ -6,6 +6,9 @@ tags:
   - Todo
 related:
   - "[[00-Daily]]"
+goal-type: daily
+goal-horizon: 1-day
+parent-goals: []
 ---
 # Daily Notes - <% moment(tp.file.title, "YYYY-MM-DD").format("dddd, MMMM D, YYYY") %>
 
@@ -17,8 +20,27 @@ related:
 ## Notes
 - 
 
+## Goal Hierarchy Context
+### This Week's Goals  
+```dataview
+TASK
+FROM "06-ROUTINES/Weekly"
+WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-[W]WW") %>")
+WHERE !completed
+LIMIT 5
+```
+
+### This Month's Focus
+```dataview
+LIST primary-focus
+FROM "06-ROUTINES/Monthly"  
+WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM") %>")
+LIMIT 1
+```
+
 ## Today's Focus
 ### Top 3 Priorities
+*Aligned with weekly and monthly goals*
 1. 
 2. 
 3. 
@@ -28,6 +50,11 @@ related:
 - 💍 **Wedding**: 
 - 🎓 **Learning**: 
 - 💻 **Development**: 
+
+### Daily Habits
+- [ ] 
+- [ ] 
+- [ ] 
 ## Today's Active Projects
 ```dataview
 LIST
