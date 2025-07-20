@@ -56,7 +56,7 @@ LIMIT 5
 TASK
 FROM "01-PROJECTS" OR "02-AREAS" OR "06-ROUTINES/Daily"
 WHERE !completed
-WHERE !regexmatch(file.folder, "(?i)archive")
+WHERE !contains(file.folder, "ARCHIVE")
 WHERE due >= date(today) OR !due
 SORT priority DESC, due ASC
 LIMIT 8
