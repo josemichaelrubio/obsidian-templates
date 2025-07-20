@@ -28,6 +28,7 @@ Fully Functional, however, will continue to improve:
 - [[_monthly]]
 - [[_dreams]]
 - [[_quick]]
+- [[_default]]
 
 ### In-Progress
 Useable but requires more work:
@@ -40,6 +41,7 @@ Useable but requires more work:
 - [[_resources]]
 - [[_projects]]
 - [[_ideas]]
+- All other folders
 
 ## Notes
 
@@ -52,3 +54,44 @@ Useable but requires more work:
 [[2025-05-10]]
 - Removed todoist from [[_daily]]
 	- Cause I used the app more
+
+[[2025-07-13]]
+- (1) [[_default]] takes care of any note that doesn't have a template, it has lowest priority, leaving other templates in charge of their respective folder 
+- [[_quick]] now has a preset tag and related file, and it had a new property called source
+
+[[2025-07-20]]
+Plugins:
+	Advance Canvas- On
+	Advance Tables- On
+	Ai Image Analyzer- off
+	auto note mover - off
+	Calendar- on
+	commander- on
+	dataview- on
+	excalidraw - on
+	file color - on
+	graph analysis - on
+	homepage - on
+	iconize - on
+	kindle highlights - off
+	longform - on
+	MCP Tools- on
+	Minimal Theme settings - on
+	Natural Language Dates - on
+	Omisearch - on
+	Outliner - on
+	PDF++ - on
+	Peroddic Notes - on
+	QuickAdd - off
+	Recent Files - on
+	Setting Search - on
+	Smart Connections - on
+	Smart Context - on
+	Smart connections Visualizer - on
+	Style settings - off
+	tag wrangler - on
+	templater - on
+	text extractor on
+	todoist sync - on
+
+
