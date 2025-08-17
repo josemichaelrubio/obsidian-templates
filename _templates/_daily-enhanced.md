@@ -48,6 +48,14 @@ FROM "06-ROUTINES/Monthly"
 WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM") %>")
 ```
 
+#### Today's Goal Contributions
+```dataview
+TASK
+FROM "06-ROUTINES/Daily"
+WHERE file.name = "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>"
+WHERE !completed
+```
+
 ## Today's Focus
 ### Top 3 Priorities
 *Aligned with weekly and monthly goals*
@@ -82,7 +90,8 @@ TABLE WITHOUT ID
   tags as "Type",
   created as "Started"
 FROM "01-PROJECTS"
-WHERE contains(tags, "screenwriting") OR contains(tags, "wedding") OR contains(tags, "certification")
+//WHERE contains(tags, "screenwriting") OR contains(tags, "wedding") OR 
+//contains(tags,"certification")
 WHERE !contains(file.folder, "COMPLETED")
 SORT created DESC
 LIMIT 10
@@ -91,12 +100,12 @@ LIMIT 10
 ## Outstanding Tasks
 ```dataview
 TASK
-FROM "01-PROJECTS" OR "02-AREAS" OR "06-ROUTINES/Daily"
+FROM 
+"06-ROUTINES/Daily"
 WHERE !completed
 WHERE !contains(file.folder, "ARCHIVE")
 WHERE due >= date(today) OR !due
 SORT priority DESC, due ASC
-LIMIT 8
 ```
 
 ## Recent Project Activity
@@ -109,7 +118,7 @@ FROM "01-PROJECTS"
 WHERE !contains(file.folder, "COMPLETED") AND !contains(file.folder, "ARCHIVE")
 WHERE file.name != "00-PROJECTS"
 SORT file.mtime DESC
-LIMIT 20
+LIMIT 10
 ```
 
 ## End of Day Review
@@ -130,7 +139,7 @@ sort by done
 *Practice before sleep - see yourself in possession of your goals*
 ```dataview
 LIST visualization-statement  
-"03-RESOURCES/Self-Help"
+FROM "03-RESOURCES/Self-Help"
 ```
 
 ### Tomorrow's Prep
