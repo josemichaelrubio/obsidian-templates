@@ -94,4 +94,6 @@ Plugins:
 	text extractor on
 	todoist sync - on
 
+[[2025-08-03]]:
+- model templates for “Think and Grow Rich” philosophy 
 

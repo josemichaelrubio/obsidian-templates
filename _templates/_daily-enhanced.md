@@ -25,6 +25,13 @@ tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
 ## Notes
 - 
 
+## Morning Affirmations (Napoleon Hill Method)
+*Read aloud with emotion and belief*
+```dataview
+LIST daily-affirmation
+FROM "03-RESOURCES/Self-Help"
+```
+
 ## Goal Hierarchy Context
 ### This Week's Goals  
 ```dataview
@@ -32,7 +39,6 @@ TASK
 FROM "06-ROUTINES/Weekly"
 WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-[W]WW") %>")
 WHERE !completed
-LIMIT 5
 ```
 
 ### This Month's Focus
@@ -40,26 +46,25 @@ LIMIT 5
 LIST primary-focus
 FROM "06-ROUTINES/Monthly"  
 WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM") %>")
-LIMIT 1
 ```
 
 ## Today's Focus
 ### Top 3 Priorities
 *Aligned with weekly and monthly goals*
-1. 
-2. 
-3. 
+- [ ] ⬆️ 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] 🔼 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] 🔼 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 
 
 ### Project Time Blocks
-- 🎬 **Screenwriting**: 
-- 💍 **Wedding**: 
-- 🎓 **Learning**: 
-- 💻 **Development**: 
+- [ ] 🎬 **Screenwriting**: ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] 💍 **Wedding**: ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] 🎓 **Learning**: ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] 💻 **Development**: ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 📅 <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 
 
 ### Daily Habits
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ] Morning routine 🔁 every day ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] Exercise session 🔁 every day 🔼 ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+- [ ] Evening review 🔁 every day ⏳ <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %> 
 ## Today's Active Projects
 ```dataview
 LIST
@@ -80,7 +85,7 @@ FROM "01-PROJECTS"
 WHERE contains(tags, "screenwriting") OR contains(tags, "wedding") OR contains(tags, "certification")
 WHERE !contains(file.folder, "COMPLETED")
 SORT created DESC
-LIMIT 5
+LIMIT 10
 ```
 
 ## Outstanding Tasks
@@ -104,12 +109,29 @@ FROM "01-PROJECTS"
 WHERE !contains(file.folder, "COMPLETED") AND !contains(file.folder, "ARCHIVE")
 WHERE file.name != "00-PROJECTS"
 SORT file.mtime DESC
-LIMIT 5
+LIMIT 20
 ```
 
 ## End of Day Review
 ### Completed
+```tasks
+done on <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+sort by done
+```
+
+### Today's Persistence Practice (Napoleon Hill)
+*What obstacles did you overcome today?*
 - 
+
+*How did you maintain faith in your goals?*
+- 
+
+## Evening Visualization (Think and Grow Rich)
+*Practice before sleep - see yourself in possession of your goals*
+```dataview
+LIST visualization-statement  
+"03-RESOURCES/Self-Help"
+```
 
 ### Tomorrow's Prep
 - 

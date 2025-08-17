@@ -1,3 +1,4 @@
+
 # Complete Guide: Hierarchical Goal System
 
 *Your Life Goals → Daily Actions Automation System*
