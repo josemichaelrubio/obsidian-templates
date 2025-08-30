@@ -18,8 +18,14 @@ goal-horizon: lifetime
 *Deep personal significance and impact*
 
 
-## Success Criteria
+## Success Criteria & Tasks
 *How will you know when you've achieved this life goal?*
+- [ ] 
+- [ ] 
+- [ ] 
+
+## Action Tasks
+*What concrete tasks will move you toward this life goal?*
 - [ ] 
 - [ ] 
 - [ ] 

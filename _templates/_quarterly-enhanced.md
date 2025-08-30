@@ -89,10 +89,25 @@ WHERE contains(child-goals, this.file.link)
 *What do you want to achieve by the end of this quarter?*
 
 
+## Inherited Tasks from This Year
+```tasks
+not done
+path includes 06-ROUTINES/Yearly
+path includes <% moment(tp.file.title, "YYYY-[Q]Q").format("YYYY") %>
+sort by priority reverse
+```
+
+## Inherited Tasks from 5-Year Plan
+```tasks
+not done
+path includes 06-ROUTINES/5-Year
+sort by priority reverse
+```
+
 ## Quarterly Goals
 
 ### Goals Supporting Annual Objectives
-*Break down yearly goals into quarterly milestones*
+*Break down yearly/5-year tasks into quarterly milestones*
 
 #### 🎯 Career & Professional
 - [ ] 

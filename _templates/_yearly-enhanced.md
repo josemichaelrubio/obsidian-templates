@@ -90,7 +90,22 @@ tR += `[[06-ROUTINES/5-Year/${fiveYearStartNav}-${fiveYearEndNav}]]`;
 *What do you want this year to be about?*
 
 
+## Inherited Tasks from 5-Year Plan
+```tasks
+not done
+path includes 06-ROUTINES/5-Year
+sort by priority reverse
+```
+
+## Inherited Tasks from Life Goals
+```tasks
+not done
+path includes 06-ROUTINES/Life
+sort by priority reverse
+```
+
 ## Yearly Goals & Projects
+*Break down 5-year/life goal tasks into yearly milestones*
 
 ### Goal Categories
 

@@ -37,7 +37,24 @@ tR += `[${dailyGoals.join(', ')}]`;
 
 ## Weekly Planning
 
-### Weekly Goals
+### Inherited Tasks from This Month
+```tasks
+not done
+path includes 06-ROUTINES/Monthly
+path includes <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-MM") %>
+sort by priority reverse
+```
+
+## Inherited Tasks from This Quarter
+```tasks
+not done
+path includes 06-ROUTINES/Quarterly
+path includes <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-[Q]Q") %>
+sort by priority reverse
+```
+
+## Weekly Goals
+*Break down monthly/quarterly tasks into weekly actions:*
 - [ ] 
 
 ### Project Focus This Week
@@ -51,13 +68,12 @@ SORT file.mtime DESC
 ```
 
 ### Open Tasks From Projects
-```dataview
-TASK
-FROM "01-PROJECTS" OR "02-AREAS"
-WHERE !completed AND !contains(file.folder, "ARCHIVE")
-WHERE due >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND due <= date(<% moment(tp.file.title, "YYYY-[W]WW").endOf('week').format("YYYY-MM-DD") %>) OR !due
-SORT priority DESC, due ASC
-LIMIT 10
+```tasks
+not done
+(path includes 01-PROJECTS) OR (path includes 02-AREAS)
+(due after <% moment(tp.file.title, "YYYY-[W]WW").startOf('week').subtract(1, 'days').format("YYYY-MM-DD") %>) AND (due before <% moment(tp.file.title, "YYYY-[W]WW").endOf('week').add(1, 'days').format("YYYY-MM-DD") %>)
+sort by priority reverse
+limit 10
 ```
 
 ## Daily Tracker

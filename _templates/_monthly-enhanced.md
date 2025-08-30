@@ -88,10 +88,26 @@ WHERE contains(child-goals, this.file.link)
 *What's the main focus for this month?*
 
 
+## Inherited Tasks from This Quarter
+```tasks
+not done
+path includes 06-ROUTINES/Quarterly
+path includes <% moment(tp.file.title, "YYYY-MM").format("YYYY-[Q]Q") %>
+sort by priority reverse
+```
+
+## Inherited Tasks from This Year
+```tasks
+not done
+path includes 06-ROUTINES/Yearly
+path includes <% moment(tp.file.title, "YYYY-MM").format("YYYY") %>
+sort by priority reverse
+```
+
 ## Monthly Goals
 
 ### Goals Supporting Annual Objectives
-*Break down yearly goals into monthly actions*
+*Break down yearly/quarterly tasks into monthly actions*
 
 #### 🎯 Career & Professional
 - [ ] 

@@ -35,23 +35,36 @@ FROM "06-ROUTINES/Life"
 WHERE contains(child-goals, this.file.link)
 ```
 
+## Inherited Tasks from Life Goals
+```tasks
+not done
+path includes 06-ROUTINES/Life
+sort by priority reverse
+```
+
 ## Strategic Focus Areas
-*What are the 3-5 major themes for these 5 years?*
+*Break down life goal tasks into 5-year milestones*
 
 ### 1. 
 **Target Outcome:** 
 **Why Important:** 
 **Success Metrics:** 
+**Tasks:**
+- [ ] 
 
 ### 2. 
 **Target Outcome:** 
 **Why Important:** 
 **Success Metrics:** 
+**Tasks:**
+- [ ] 
 
 ### 3. 
 **Target Outcome:** 
 **Why Important:** 
 **Success Metrics:** 
+**Tasks:**
+- [ ] 
 
 ## Year-by-Year Breakdown
 ```dataview

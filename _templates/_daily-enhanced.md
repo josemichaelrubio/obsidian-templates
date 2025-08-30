@@ -39,16 +39,33 @@ tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
 > ```
 
 ---
-## Goals:
-> [!target]- Weekly Goals
+## Goals & Tasks:
+
+> [!warning]- Tasks Due Today
+> ```tasks
+> due on <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
+> sort by priority
+> ```
+
+> [!target]- Weekly Tasks
 > ```dataview
 > TASK
 > FROM "06-ROUTINES/Weekly"
 > WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-[W]WW") %>")
 > WHERE !completed
+> SORT priority DESC, text ASC
 > ```
 
-> [!goal]- Monthly Focus
+> [!info]- Monthly Goals
+> ```dataview
+> TASK
+> FROM "06-ROUTINES/Monthly"
+> WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM") %>")
+> WHERE !completed
+> SORT priority DESC, text ASC
+> ```
+
+> [!goal]- Goal Context
 > ```dataview
 > LIST primary-focus
 > FROM "06-ROUTINES/Monthly"  
@@ -96,7 +113,7 @@ tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
 > ```
 
 ---
-## End of Day Review
+## End of Day Review:
 > [!success]- Completed
 > ```tasks
 > done on <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
