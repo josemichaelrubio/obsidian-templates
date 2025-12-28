@@ -104,19 +104,14 @@ SORT date DESC
 LIMIT 6
 ```
 
-### Recent Project Activity
+### Recent [[00-PROJECTS]] Activity
 ```dataview
-TABLE 
-  choice(file.mtime > date(today) - dur(7 days), "🔥 This Week", 
-    choice(file.mtime > date(today) - dur(14 days), "📅 Recent", "💤 Older")) as "Activity",
-  file.mtime as "Last Updated"
-FROM "01-PROJECTS"
-WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED")
-WHERE file.name != "00-PROJECTS"
-SORT file.mtime DESC
-LIMIT 8
+TABLE file.mtime as "Last Updated" FROM "01-PROJECTS" WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED") WHERE file.name != "00-PROJECTS" WHERE file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) SORT file.mtime DESC
 ```
-
+### Recent [[00-AREAS]] Activity
+```dataview 
+TABLE file.mtime as "Last Updated" FROM "02-AREAS" WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED") WHERE file.name != "00-AREAS" WHERE file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) SORT file.mtime
+```
 ## Notes
 - 
 
@@ -133,17 +128,3 @@ LIMIT 8
 ### Lessons Learned
 - 
 
-### Key Metrics
-- **Goals Completed**: __ / __ (__%)
-- **Project Focus**: 
-- **Energy Level**: __ / 10
-- **Key Win**: 
-- **Area for Improvement**: 
-
-### Next Week Planning
-- **Top 3 Priorities**: 
-  1. 
-  2. 
-  3. 
-- **Project Focus**: 
-- **Time Allocation**: 

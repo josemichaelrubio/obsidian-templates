@@ -97,3 +97,7 @@ Plugins:
 [[2025-08-03]]:
 - model templates for “Think and Grow Rich” philosophy 
 
+[[2025-10-05]]:
+- Starting to use Icon colors
+	- The 00 = #09EC4D (green)
+	- The Super = #002B0 (blue)
