@@ -101,3 +101,6 @@ Plugins:
 - Starting to use Icon colors
 	- The 00 = #09EC4D (green)
 	- The Super = #002B0 (blue)
+
+[[2025-12-28]]
+- Icons vary now based on if the note is a 0X. 0X meaning it is important in this directory and often frequented

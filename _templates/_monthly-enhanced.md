@@ -124,6 +124,8 @@ sort by priority reverse
 #### 🎨 Creative & Passion Projects
 - [ ] 
 
+#### 💰 Financial & Security
+- [ ] 
 ### Project Milestones This Month
 ```dataview
 TABLE 

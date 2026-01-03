@@ -53,9 +53,57 @@ path includes <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-[Q]Q") %>
 sort by priority reverse
 ```
 
-## Weekly Goals
-*Break down monthly/quarterly tasks into weekly actions:*
-- [ ] 
+#### 🎯 Career & Professional
+- [[00-MOC-CAREER|00-Career]]:
+	- [ ] 
+- [[00-MCCS]]:
+	- [ ] 
+
+#### 💪 [[00-MEDICAL]] & [[00-FITNESS]]
+- [[04-Current Training Program]]/ [[02-USAPL NATIONALS]]:
+	- [ ] 
+- Other:
+	- [ ] Adderall intake this week:
+
+#### 💍 Relationships & Personal: [[00-Social]]
+- [[Victoria Owens Rubio]]:
+	- [ ] 
+- Family:
+	- [ ] 
+- Friends:
+	- [ ] 
+- Gatherings:
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 🧠 Learning & Growth
+- [[00-2026 Spring]]
+	- [ ] 
+- [[00-MSAI]]
+	- [ ] 
+- [[00-BOOKS]]
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 🎨 Creative & Passion Projects
+- [[00-UBUNTU]]:
+	- [ ] 
+- [[00-WEBSITE]]:
+	- [ ] 
+- Creating Art:
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 💰 Financial & Security
+- Debts & Credit Paid off:
+	- [ ] 
+-  [ ] Purchase Budget:
+
+#### Other
+- 
 
 ### Project Focus This Week
 ```dataview
