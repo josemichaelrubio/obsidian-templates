@@ -34,37 +34,28 @@ tR += `[${dailyGoals.join(', ')}]`;
 [[06-ROUTINES/Weekly/<% moment(tp.file.title, "YYYY-[W]WW").subtract(1, 'weeks').format("YYYY-[W]WW") %>]]
 ### Next Week
 [[06-ROUTINES/Weekly/<% moment(tp.file.title, "YYYY-[W]WW").add(1, 'weeks').format("YYYY-[W]WW") %>]]
+### Days:
 
-## Weekly Planning
-
-### Inherited Tasks from This Month
-```tasks
-not done
-path includes 06-ROUTINES/Monthly
-path includes <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-MM") %>
-sort by priority reverse
-```
-
-## Inherited Tasks from This Quarter
-```tasks
-not done
-path includes 06-ROUTINES/Quarterly
-path includes <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-[Q]Q") %>
-sort by priority reverse
-```
-
+| Day           | Note                                                                                                                |
+| :------------ | :------------------------------------------------------------------------------------------------------------------ |
+| **Sunday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>]]                |
+| **Monday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(1, 'days').format("YYYY-MM-DD") %>]] |
+| **Tuesday**   | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(2, 'days').format("YYYY-MM-DD") %>]] |
+| **Wednesday** | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(3, 'days').format("YYYY-MM-DD") %>]] |
+| **Thursday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(4, 'days').format("YYYY-MM-DD") %>]] |
+| **Friday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(5, 'days').format("YYYY-MM-DD") %>]] |
+| **Saturday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(6, 'days').format("YYYY-MM-DD") %>]] |
+## Weekly Goals
 #### 🎯 Career & Professional
 - [[00-MOC-CAREER|00-Career]]:
 	- [ ] 
 - [[00-MCCS]]:
 	- [ ] 
-
 #### 💪 [[00-MEDICAL]] & [[00-FITNESS]]
 - [[04-Current Training Program]]/ [[02-USAPL NATIONALS]]:
 	- [ ] 
 - Other:
 	- [ ] Adderall intake this week:
-
 #### 💍 Relationships & Personal: [[00-Social]]
 - [[Victoria Owens Rubio]]:
 	- [ ] 
@@ -76,7 +67,6 @@ sort by priority reverse
 	- [ ] 
 - Other:
 	- [ ] 
-
 #### 🧠 Learning & Growth
 - [[00-2026 Spring]]
 	- [ ] 
@@ -86,7 +76,6 @@ sort by priority reverse
 	- [ ] 
 - Other:
 	- [ ] 
-
 #### 🎨 Creative & Passion Projects
 - [[00-UBUNTU]]:
 	- [ ] 
@@ -96,26 +85,35 @@ sort by priority reverse
 	- [ ] 
 - Other:
 	- [ ] 
-
 #### 💰 Financial & Security
 - Debts & Credit Paid off:
 	- [ ] 
 -  [ ] Purchase Budget:
-
 #### Other
 - 
+## Big Picture Tasks
+### <% moment(tp.file.title, "YYYY-[W]WW").format("MMMM YYYY") %> Goals:
+> [!info]- Monthly Goals
+> ```dataview
+> TASK
+> FROM "06-ROUTINES/Monthly"
+> WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-MM") %>")
+>   AND !completed
+> SORT priority DESC, text ASC
+> ```
 
-### Project Focus This Week
-```dataview
-LIST
-FROM "01-PROJECTS"
-WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED")
-WHERE startswith(file.name, "00-") AND file.name != "00-PROJECTS"
-GROUP BY file.folder
-SORT file.mtime DESC
-```
+### <% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-[Q]Q") %> Goals:
 
-### Open Tasks From Projects
+> [!info]- Quarterly Goals
+> ```dataview
+> TASK
+> FROM "06-ROUTINES/Quarterly"
+> WHERE contains(file.name, "<% moment(tp.file.title, "YYYY-[W]WW").format("YYYY-[Q]Q") %>")
+> AND !completed
+> SORT priority DESC, text ASC
+> ```
+
+## Project Tasks
 ```tasks
 not done
 (path includes 01-PROJECTS) OR (path includes 02-AREAS)
@@ -124,55 +122,47 @@ sort by priority reverse
 limit 10
 ```
 
-## Daily Tracker
+## Recent Activity
 
-| Day           | Note                                                                                                                | Top Priority |
-| :------------ | :------------------------------------------------------------------------------------------------------------------ | :----------: |
-| **Sunday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>]]                |              |
-| **Monday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(1, 'days').format("YYYY-MM-DD") %>]] |              |
-| **Tuesday**   | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(2, 'days').format("YYYY-MM-DD") %>]] |              |
-| **Wednesday** | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(3, 'days').format("YYYY-MM-DD") %>]] |              |
-| **Thursday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(4, 'days').format("YYYY-MM-DD") %>]] |              |
-| **Friday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(5, 'days').format("YYYY-MM-DD") %>]] |              |
-| **Saturday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(6, 'days').format("YYYY-MM-DD") %>]] |              |
-
-## Weekly Performance Review
-
-### Goal Completion Trend
+### Goal Completion Trend of the Previous 6 weeks
 ```dataview
 TABLE 
     file.link AS "Week",
-    length(file.tasks.completed) + " / " + length(file.tasks) AS "Tasks",
+    length(filter(file.tasks, (t) => t.completed)) + " / " + length(file.tasks) AS "Tasks",
     choice(length(file.tasks) > 0, 
-        round((length(file.tasks.completed) / length(file.tasks)) * 100, 0) + "%", 
+        round((length(filter(file.tasks, (t) => t.completed)) / length(file.tasks)) * 100, 0) + "%", 
         "No goals") AS "Completion %"
 FROM "06-ROUTINES/Weekly"
 WHERE file.name != "00-Weekly" AND !contains(file.folder, "ARCHIVE")
-SORT date DESC
+SORT file.name DESC
 LIMIT 6
 ```
 
 ### Recent [[00-PROJECTS]] Activity
 ```dataview
-TABLE file.mtime as "Last Updated" FROM "01-PROJECTS" WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED") WHERE file.name != "00-PROJECTS" WHERE file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) SORT file.mtime DESC
+TABLE file.mtime as "Last Updated" 
+FROM "01-PROJECTS" 
+WHERE !contains(file.folder, "ARCHIVE") 
+  AND !contains(file.folder, "COMPLETED") 
+  AND file.name != "00-PROJECTS" 
+  AND file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) 
+  AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) 
+SORT file.mtime DESC
 ```
 ### Recent [[00-AREAS]] Activity
 ```dataview 
-TABLE file.mtime as "Last Updated" FROM "02-AREAS" WHERE !contains(file.folder, "ARCHIVE") AND !contains(file.folder, "COMPLETED") WHERE file.name != "00-AREAS" WHERE file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) SORT file.mtime
+TABLE file.mtime as "Last Updated" 
+FROM "02-AREAS" 
+WHERE !contains(file.folder, "ARCHIVE") 
+  AND !contains(file.folder, "COMPLETED") 
+  AND file.name != "00-AREAS" 
+  AND file.mtime >= date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').format("YYYY-MM-DD") %>) 
+  AND file.mtime < date(<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(7, 'days').format("YYYY-MM-DD") %>) 
+SORT file.mtime DESC
 ```
+
 ## Notes
 - 
 
-## Weekly Review
 ### Mind Dump
 - 
-
-### Highlights
-- 
-
-### Challenges Faced
-- 
-
-### Lessons Learned
-- 
-

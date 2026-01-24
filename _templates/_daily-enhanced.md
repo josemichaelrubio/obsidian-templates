@@ -19,11 +19,11 @@ tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
 
 ---
 
-| Direction    | Date                                                                                                             | Link                                                                                                                                    |
-| ------------ | ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| 📅 This Week | <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY") %>-W<% moment(tp.file.title, "YYYY-MM-DD").format("WW") %> | [[06-ROUTINES/Weekly/<% moment(tp.file.title, "YYYY-MM-DD").format("YYYY") %>-W<% moment(tp.file.title, "YYYY-MM-DD").format("WW") %>]] |
-| ◀️ Yesterday | <% moment(tp.file.title, "YYYY-MM-DD").subtract(1, 'days').format("YYYY-MM-DD") %>                               | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-MM-DD").subtract(1, 'days').format("YYYY-MM-DD") %>]]                                |
-| ▶️ Tomorrow  | <% moment(tp.file.title, "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD") %>                                    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD") %>]]                                     |
+| Direction    | Date                                                                                               | Link                                                                                                                         |
+| ------------ | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| 📅 This Week | <% moment(tp.file.title, "YYYY-MM-DD").startOf('week').add(1, 'days').format("YYYY-[W]WW") %>      | [[06-ROUTINES/Weekly/<% moment(tp.file.title, "YYYY-MM-DD").startOf('week').add(1, 'days').format("YYYY-[W]WW") %>]]         |
+| ◀️ Yesterday | <% moment(tp.file.title, "YYYY-MM-DD").subtract(1, 'days').format("YYYY-MM-DD") %>                 | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-MM-DD").subtract(1, 'days').format("YYYY-MM-DD") %>]]                     |
+| ▶️ Tomorrow  | <% moment(tp.file.title, "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD") %>                      | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-MM-DD").add(1, 'days').format("YYYY-MM-DD") %>]]                          |
 
 ---
 ## Notes:
@@ -119,11 +119,3 @@ tR += `["[[06-ROUTINES/Weekly/${weeklyNote}]]"]`;
 > done on <% moment(tp.file.title, "YYYY-MM-DD").format("YYYY-MM-DD") %>
 > sort by done
 > ```
-
-### Today's Persistence Practice (Napoleon Hill)
-*What obstacles did you overcome today?*
-- 
-
-*How did you maintain faith in your goals?*
-- 
-
