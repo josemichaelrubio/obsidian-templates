@@ -45,6 +45,7 @@ tR += `[${dailyGoals.join(', ')}]`;
 | **Thursday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(4, 'days').format("YYYY-MM-DD") %>]] |
 | **Friday**    | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(5, 'days').format("YYYY-MM-DD") %>]] |
 | **Saturday**  | [[06-ROUTINES/Daily/<% moment(tp.file.title, "YYYY-[W]WW").startOf('week').add(6, 'days').format("YYYY-MM-DD") %>]] |
+
 ## Weekly Goals
 #### 🎯 Career & Professional
 - [[00-MOC-CAREER|00-Career]]:
