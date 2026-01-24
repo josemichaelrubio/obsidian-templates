@@ -50,23 +50,8 @@ goal-progress: ""
 ---
 # <% tp.file.title %> Annual Plan
 
-## Goal Hierarchy
+## References
 
-### Parent 5-Year Goals
-```dataview
-LIST
-FROM "06-ROUTINES/5-Year"
-WHERE contains(child-goals, this.file.link)
-```
-
-### Supporting Life Goals  
-```dataview
-LIST
-FROM "06-ROUTINES/Life"
-WHERE contains(child-goals, child-goals)
-```
--- Update uptop
-## Reference Navigation
 ### Current 5-Year
 <%*
 const currentYearNav = moment(tp.file.title, "YYYY").year();
@@ -81,76 +66,22 @@ tR += `[[06-ROUTINES/5-Year/${fiveYearStartNav}-${fiveYearEndNav}]]`;
 ### Next Year
 [[06-ROUTINES/Yearly/<% moment(tp.file.title, "YYYY").add(1, 'years').format("YYYY") %>]]
 
-## Annual Theme & Focus
-### Primary Focus Area
-*What is the main theme for this year?*
-
-
-### Core Intention
-*What do you want this year to be about?*
-
-
-## Inherited Tasks from 5-Year Plan
-```tasks
-not done
-path includes 06-ROUTINES/5-Year
-sort by priority reverse
-```
-
-## Inherited Tasks from Life Goals
-```tasks
-not done
-path includes 06-ROUTINES/Life
-sort by priority reverse
-```
-
-## Yearly Goals & Projects
-*Break down 5-year/life goal tasks into yearly milestones*
-
-### Goal Categories
-
-#### 🎯 Career & Professional
-- [ ] 
-
-#### 💪 Health & Fitness  
-- [ ] 
-
-#### 💍 Relationships & Personal
-- [ ] 
-
-#### 🧠 Learning & Growth
-- [ ] 
-
-#### 🎨 Creative & Passion Projects
-- [ ] 
-
-#### 💰 Financial & Security
-- [ ] 
-
-## Supporting Projects
-```dataview
-TABLE 
-    tags as "Type",
-    created as "Started"
-FROM "01-PROJECTS"
-WHERE contains(supporting-goals, this.file.link) AND !contains(file.folder, "ARCHIVE")
-SORT created DESC
-```
-
 ## Quarterly Breakdown
 ```dataview
 TABLE 
-    primary-goals as "Focus",
-    key-projects as "Projects",
-    completion-status as "Status"
+    length(filter(file.tasks, (t) => t.completed)) + " / " + length(file.tasks) AS "Goals",
+    choice(length(file.tasks) > 0, 
+        round((length(filter(file.tasks, (t) => t.completed)) / length(file.tasks)) * 100, 0) + "%", 
+        "No goals") AS "Completion %"
 FROM "06-ROUTINES/Quarterly"
-WHERE contains(parent-goals, this.file.link)
-SORT date ASC
+WHERE contains(parent-goals, this.file.link) 
+  AND !contains(file.folder, "ARCHIVE")
+SORT file.name ASC
 ```
 
 ## Quarterly Tracker
-| Quarter | Focus Area | Key Projects | Status |
-| :------ | :--------- | :----------- | :----: |
+| Quarters this Year |
+| :----------------- |
 <%*
 const year = moment(tp.file.title, "YYYY").year();
 
@@ -159,73 +90,144 @@ function generateQuarterLink(quarter) {
     return `[[06-ROUTINES/Quarterly/${startDate.format("YYYY-[Q]Q")}]]`;
 }
 
-let tableRows = "";
 for (let q = 1; q <= 4; q++) {
-    tableRows += `| ${generateQuarterLink(q)} |  |  |  |\n`;
+    tR += `| ${generateQuarterLink(q)} |\n`;
 }
-
-tR += tableRows;
 %>
 
-## Monthly Goal Rollup
+## Annual Theme
+*What's the main focus for this year?*
+- 
+
+## Yearly Goals
+
+#### 🎯 Career & Professional
+- [[00-MOC-CAREER|00-Career]]:
+	- [ ] 
+- [[00-MCCS]]:
+	- [ ] 
+
+#### 💪 [[00-MEDICAL]] & [[00-FITNESS]]
+- [[04-Current Training Program]]/ [[02-USAPL NATIONALS]]:
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 💍 Relationships & Personal: [[00-Social]]
+- [[Victoria Owens Rubio]]:
+	- [ ] 
+- Family:
+	- [ ] 
+- Friends:
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 🧠 Learning & Growth
+- [[00-2026 Spring]]
+	- [ ] 
+- [[00-MSAI]]
+	- [ ] 
+- [[00-BOOKS]]
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 🎨 Creative & Passion Projects
+- [[00-UBUNTU]]:
+	- [ ] 
+- [[00-WEBSITE]]:
+	- [ ] 
+- Creating Art:
+	- [ ] 
+- Other:
+	- [ ] 
+
+#### 💰 Financial & Security
+- Debts & Credit Paid off:
+	- [ ] 
+- [ ] Purchase Budget:
+
+#### Other
+- 
+
+## Big Picture Tasks
+
+### 5-Year Goals:
+> [!info]- 5-Year Goals
+> ```dataview
+> TASK
+> FROM "06-ROUTINES/5-Year"
+> WHERE contains(child-goals, this.file.link)
+>   AND !completed
+> SORT priority DESC, text ASC
+> ```
+
+## Project Tasks
+```tasks
+not done
+(path includes 01-PROJECTS) OR (path includes 02-AREAS)
+(due after <% moment(tp.file.title, "YYYY").startOf('year').subtract(1, 'days').format("YYYY-MM-DD") %>) AND (due before <% moment(tp.file.title, "YYYY").endOf('year').add(1, 'days').format("YYYY-MM-DD") %>)
+sort by priority reverse
+limit 25
+```
+
+## Recent Activity
+
+### Goal Completion Trend of Previous Years
 ```dataview
 TABLE 
-    length(file.tasks.completed) + " / " + length(file.tasks) AS "Goals",
+    file.link AS "Year",
+    length(filter(file.tasks, (t) => t.completed)) + " / " + length(file.tasks) AS "Tasks",
     choice(length(file.tasks) > 0, 
-        round((length(file.tasks.completed) / length(file.tasks)) * 100, 0) + "%", 
-        "No goals") AS "Completion %",
-    primary-focus as "Focus"
-FROM "06-ROUTINES/Monthly"
-WHERE contains(parent-goals, this.file.link) AND !contains(file.folder, "ARCHIVE")
-SORT date DESC
-LIMIT 12
+        round((length(filter(file.tasks, (t) => t.completed)) / length(file.tasks)) * 100, 0) + "%", 
+        "No goals") AS "Completion %"
+FROM "06-ROUTINES/Yearly"
+WHERE file.name != "00-Yearly" 
+  AND !contains(file.folder, "ARCHIVE")
+SORT file.name DESC
+LIMIT 5
 ```
 
-## Areas & Habits Integration
-### Key Areas This Year
+### Recent [[00-PROJECTS]] Activity
 ```dataview
-LIST
-FROM "02-AREAS"
-WHERE contains(strategic-goals, this.file.link) AND !contains(file.folder, "ARCHIVE")
+TABLE file.mtime as "Last Updated" 
+FROM "01-PROJECTS" 
+WHERE !contains(file.folder, "ARCHIVE") 
+  AND !contains(file.folder, "COMPLETED") 
+  AND file.name != "00-PROJECTS" 
+  AND file.mtime >= date(<% moment(tp.file.title, "YYYY").startOf('year').format("YYYY-MM-DD") %>) 
+  AND file.mtime < date(<% moment(tp.file.title, "YYYY").endOf('year').add(1, 'days').format("YYYY-MM-DD") %>) 
+SORT file.mtime DESC
+LIMIT 10
 ```
 
-### Habits to Build/Maintain
-- [ ] 
-- [ ] 
-- [ ] 
+### Recent [[00-AREAS]] Activity
+```dataview 
+TABLE file.mtime as "Last Updated" 
+FROM "02-AREAS" 
+WHERE !contains(file.folder, "ARCHIVE") 
+  AND !contains(file.folder, "COMPLETED") 
+  AND file.name != "00-AREAS" 
+  AND file.mtime >= date(<% moment(tp.file.title, "YYYY").startOf('year').format("YYYY-MM-DD") %>) 
+  AND file.mtime < date(<% moment(tp.file.title, "YYYY").endOf('year').add(1, 'days').format("YYYY-MM-DD") %>) 
+SORT file.mtime DESC
+LIMIT 10
+```
 
-## Progress Tracking
-### Current Progress (Mid-Year Review)
-*How are you doing on your annual goals?*
-
-
-### Key Wins So Far
+## Notes
 - 
 
-### Areas Needing Attention  
-- 
+## Yearly Review
 
-### Course Corrections Needed
-- 
-
-## Yearly Review 
 ### Mind Dump
 - 
 
-### Major Highlights
+### Highlights
 - 
 
-### Major Challenges Faced
+### Challenges Faced
 - 
 
-### Major Lessons Learned
-- 
-
-### Areas for Growth
-- 
-
-### Success Metrics Achieved
-- 
-
-### Goals to Carry Forward
+### Lessons Learned
 - 

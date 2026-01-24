@@ -11,11 +11,11 @@ goal-horizon: 5-year
 parent-goals: []
 child-goals: <%*
 // Auto-generate child-goals for yearly notes in this 5-year range
-const title = tp.file.title;
-const match = title.match(/(\d{4})-(\d{4})/);
-if (match) {
-    const startYear = parseInt(match[1]);
-    const endYear = parseInt(match[2]);
+const childTitle = tp.file.title;
+const childMatch = childTitle.match(/(\d{4})-(\d{4})/);
+if (childMatch) {
+    const startYear = parseInt(childMatch[1]);
+    const endYear = parseInt(childMatch[2]);
     const yearlyGoals = [];
     for (let year = startYear; year <= endYear; year++) {
         yearlyGoals.push(`"[[06-ROUTINES/Yearly/${year}]]"`);
@@ -26,24 +26,76 @@ if (match) {
 }
 %>
 ---
-# 5-Year: <% tp.file.title %>
+# 5-Year Plan: <% tp.file.title %>
 
-## Parent Life Goals
+## References
+
+### Life Goals
+[[06-ROUTINES/Life/00-Life Goals]]
+
+### Previous 5-Year
+<%*
+const prevTitle = tp.file.title;
+const prevMatch = prevTitle.match(/(\d{4})-(\d{4})/);
+if (prevMatch) {
+    const startYear = parseInt(prevMatch[1]);
+    const prevStart = startYear - 5;
+    const prevEnd = startYear - 1;
+    tR += `[[06-ROUTINES/5-Year/${prevStart}-${prevEnd}]]`;
+} else {
+    tR += '[[06-ROUTINES/5-Year/]]';
+}
+%>
+
+### Next 5-Year
+<%*
+const nextTitle = tp.file.title;
+const nextMatch = nextTitle.match(/(\d{4})-(\d{4})/);
+if (nextMatch) {
+    const endYear = parseInt(nextMatch[2]);
+    const nextStart = endYear + 1;
+    const nextEnd = endYear + 5;
+    tR += `[[06-ROUTINES/5-Year/${nextStart}-${nextEnd}]]`;
+} else {
+    tR += '[[06-ROUTINES/5-Year/]]';
+}
+%>
+
+## Yearly Breakdown
 ```dataview
-LIST
-FROM "06-ROUTINES/Life"
-WHERE contains(child-goals, this.file.link)
+TABLE 
+    length(filter(file.tasks, (t) => t.completed)) + " / " + length(file.tasks) AS "Goals",
+    choice(length(file.tasks) > 0, 
+        round((length(filter(file.tasks, (t) => t.completed)) / length(file.tasks)) * 100, 0) + "%", 
+        "No goals") AS "Completion %"
+FROM "06-ROUTINES/Yearly"
+WHERE contains(parent-goals, this.file.link) 
+  AND !contains(file.folder, "ARCHIVE")
+SORT file.name ASC
 ```
 
-## Inherited Tasks from Life Goals
-```tasks
-not done
-path includes 06-ROUTINES/Life
-sort by priority reverse
-```
+## Yearly Tracker
+| Years this 5-Year |
+| :---------------- |
+<%*
+const trackerTitle = tp.file.title;
+const trackerMatch = trackerTitle.match(/(\d{4})-(\d{4})/);
+if (trackerMatch) {
+    const startYear = parseInt(trackerMatch[1]);
+    const endYear = parseInt(trackerMatch[2]);
+    for (let year = startYear; year <= endYear; year++) {
+        tR += `| [[06-ROUTINES/Yearly/${year}]] |\n`;
+    }
+} else {
+    tR += '| No years found |\n';
+}
+%>
+
+## 5-Year Theme
+*What's the main focus for this 5-year period?*
+- 
 
 ## Strategic Focus Areas
-*Break down life goal tasks into 5-year milestones*
 
 ### 1. 
 **Target Outcome:** 
@@ -66,54 +118,60 @@ sort by priority reverse
 **Tasks:**
 - [ ] 
 
-## Year-by-Year Breakdown
+### 4. 
+**Target Outcome:** 
+**Why Important:** 
+**Success Metrics:** 
+**Tasks:**
+- [ ] 
+
+### 5. 
+**Target Outcome:** 
+**Why Important:** 
+**Success Metrics:** 
+**Tasks:**
+- [ ] 
+
+## Big Picture Tasks
+
+### Life Goals:
+> [!info]- Life Goals
+> ```dataview
+> TASK
+> FROM "06-ROUTINES/Life"
+> WHERE !completed
+> SORT priority DESC, text ASC
+> ```
+
+## Recent Activity
+
+### Goal Completion Trend of Years in This 5-Year
 ```dataview
 TABLE 
-    primary-focus as "Focus",
-    key-projects as "Key Projects",
-    goal-progress as "Progress"
+    file.link AS "Year",
+    length(filter(file.tasks, (t) => t.completed)) + " / " + length(file.tasks) AS "Tasks",
+    choice(length(file.tasks) > 0, 
+        round((length(filter(file.tasks, (t) => t.completed)) / length(file.tasks)) * 100, 0) + "%", 
+        "No goals") AS "Completion %"
 FROM "06-ROUTINES/Yearly"
-WHERE contains(parent-goals, this.file.link)
-SORT date ASC
+WHERE contains(parent-goals, this.file.link) 
+  AND !contains(file.folder, "ARCHIVE")
+SORT file.name ASC
 ```
 
-## Supporting Annual Goals
-```dataview
-LIST
-FROM "06-ROUTINES/Yearly"
-WHERE contains(parent-goals, this.file.link)
-GROUP BY primary-focus
-SORT date ASC
-```
-
-## Connected PARA Elements
-
-### Primary Projects
-*Which major projects support these 5-year goals?*
-```dataview
-LIST
-FROM "01-PROJECTS"
-WHERE contains(supporting-goals, this.file.link) AND !contains(file.folder, "ARCHIVE")
-```
-
-### Key Areas
-*Which ongoing areas are critical to these goals?*
-```dataview
-LIST
-FROM "02-AREAS"
-WHERE contains(strategic-goals, this.file.link) AND !contains(file.folder, "ARCHIVE")
-```
-
-## Progress Review
-### Current Status
-*Where are you in year __ of this 5-year?*
-
-
-### Major Milestones Achieved
+## Notes
 - 
 
-### Course Corrections Needed
+## 5-Year Review
+
+### Mind Dump
 - 
 
-### Key Lessons Learned
+### Highlights
 - 
+
+### Challenges Faced
+- 
+
+### Lessons Learned
+-
