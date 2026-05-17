@@ -138,55 +138,40 @@ for (const link of weekLinks) {
 
 ## Monthly Goals
 
+#### 🕴️ [[00-Anchor]]
+- [ ] 
+-  Development:
+	- [ ] 
+- Funding:
+	- [ ] 
 #### 🎯 Career & Professional
+- [ ] 
 - [[00-MOC-CAREER|00-Career]]:
 	- [ ] 
+	- [[00-JOB HUNT 2026]]
+		- [ ] 
 - [[00-MCCS]]:
 	- [ ] 
-
 #### 💪 [[00-MEDICAL]] & [[00-FITNESS]]
+- [ ] 
 - [[04-Current Training Program]]/ [[02-USAPL NATIONALS]]:
 	- [ ] 
-- Other:
-	- [ ] 
-
 #### 💍 Relationships & Personal: [[00-Social]]
+- [ ] 
 - [[Victoria Owens Rubio]]:
 	- [ ] 
 - Family:
 	- [ ] 
 - Friends:
 	- [ ] 
-- Other:
-	- [ ] 
-
 #### 🧠 Learning & Growth
-- [[00-2026 Spring]]
-	- [ ] 
+- [ ] 
 - [[00-MSAI]]
 	- [ ] 
-- [[00-BOOKS]]
-	- [ ] 
-- Other:
-	- [ ] 
-
-#### 🎨 Creative & Passion Projects
-- [[00-UBUNTU]]:
-	- [ ] 
-- [[00-WEBSITE]]:
-	- [ ] 
-- Creating Art:
-	- [ ] 
-- Other:
-	- [ ] 
-
 #### 💰 Financial & Security
-- Debts & Credit Paid off:
-	- [ ] 
-- [ ] Purchase Budget:
-
+- [ ] 
 #### Other
-- 
+- [ ] 
 
 ## Big Picture Tasks
 
